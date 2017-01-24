@@ -1,0 +1,88 @@
+OutTerminator = "\r\n";
+InTerminator = "\r\r\n";
+ReplyTimeout = 2000;
+
+r = "!a!o!";
+
+getInitSP {
+	c = "siv?";
+	out "a" $c;
+    in "*a*:" $c "; ";
+    in "SP INIT VAL: %f ";
+	in $r;
+}
+
+setInitSP {
+	c = "siv";
+	out "a" $c " %f";
+    in "*a*:" $c ";%f";
+	in $r;
+}
+
+getSP {
+	c = "spv?";
+	out "a" $c;
+    in "*a*:" $c "; ";
+    in "SP VALUE: %f ";
+	in $r;
+}
+
+setSP {
+	c = "spv";
+	out "a" $c " %f";
+    in "*a*:" $c ";%f";
+	in $r;
+}
+
+getUnits {
+	c = "uiu?";
+	out "a" $c;
+    in "*a*:" $c "; ";
+    in "INPUT UNITS STR:%s";
+	in $r;
+}
+
+setUnits {
+	c = "uiu";
+	out "a" $c " %s";
+    in "*a*:" $c ";%s";
+	in $r;
+}
+
+getInChanRange {
+	c = "uir?";
+	out "a" $c;
+    in "*a*:" $c "; ";
+    in "INPUT RANGE: %f ";
+	in $r;
+}
+
+setInChanRange {
+	c = "uir";
+	out "a" $c " %f";
+    in "*a*:" $c ";%f";
+	in $r;
+}
+
+getInChanScale {
+	c = "uif?";
+	out "a" $c;
+    in "*a*:" $c "; ";
+    in "INPUT FULLSCALE: %f ";
+	in $r;
+}
+
+setInChanScale {
+	c = "uif";
+	out "a" $c " %f";
+    in "*a*:" $c ";%f";
+	in $r;
+}
+
+getCurrentRead {
+	c = "r";
+	out "a" $c;
+    in "*a*:" $c "  ; ";
+    in "READ:%f;%*i";
+	in $r;
+}
