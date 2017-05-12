@@ -35,7 +35,7 @@ setSP {
 }
 
 getUnits {
-	ExtraInput = ignore
+	ExtraInput = ignore;
 	c = "uiu?";
 	out "a" $c;
     in "*a*:" $c "; ";
