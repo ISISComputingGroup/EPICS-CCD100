@@ -84,6 +84,6 @@ getCurrentRead {
 	c = "r";
 	out "a" $c;
     in "*a*:" $c "  ; ";
-    in "READ:%f;%*i";
+    in "READ:%f\_;%*i";
 	in $r;
 }
