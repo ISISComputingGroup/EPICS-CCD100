@@ -2,88 +2,88 @@ OutTerminator = "\r\n";
 InTerminator = "\r\r\n";
 ReplyTimeout = 2000;
 
-r = "!a!o!";
+r = "!o!";
 
 getInitSP {
 	c = "siv?";
-	out "a" $c;
-    in "*a*:" $c "; ";
+	out "\$1" $c;
+    in "*\$1*:" $c "; ";
     in "SP INIT VAL: %f ";
-	in $r;
+	in "!\$1" $r;
 }
 
 setInitSP {
 	c = "siv";
-	out "a" $c " %f";
-    in "*a*:" $c ";%f";
-	in $r;
+	out "\$1" $c " %f";
+    in "*\$1*:" $c ";%f";
+	in "!\$1" $r;
 }
 
 getSP {
 	c = "spv?";
-	out "a" $c;
-    in "*a*:" $c "; ";
+	out "\$1" $c;
+    in "*\$1*:" $c "; ";
     in "SP VALUE: %f ";
-	in $r;
+	in "!\$1" $r;
 }
 
 setSP {
 	c = "spv";
-	out "a" $c " %f";
-    in "*a*:" $c ";%f";
-	in $r;
+	out "\$1" $c " %f";
+    in "*\$1*:" $c ";%f";
+	in "!\$1" $r;
 }
 
 getUnits {
 	ExtraInput = ignore;
 	c = "uiu?";
-	out "a" $c;
-    in "*a*:" $c "; ";
+	out "\$1" $c;
+    in "*\$1*:" $c "; ";
     in "INPUT UNITS STR:%s";
-	in $r;
+	in "!\$1" $r;
 }
 
 setUnits {
 	c = "uiu";
-	out "a" $c " %s";
-    in "*a*:" $c ";%s";
-	in $r;
+	out "\$1" $c " %s";
+    in "*\$1*:" $c ";%s";
+	in "!\$1" $r;
 }
 
 getInChanRange {
 	c = "uir?";
-	out "a" $c;
-    in "*a*:" $c "; ";
+	out "\$1" $c;
+    in "*\$1*:" $c "; ";
     in "INPUT RANGE: %f ";
-	in $r;
+	in "!\$1" $r;
 }
 
 setInChanRange {
 	c = "uir";
-	out "a" $c " %f";
-    in "*a*:" $c ";%f";
-	in $r;
+	out "\$1" $c " %f";
+    in "*\$1*:" $c ";%f";
+	in "!\$1" $r;
 }
 
 getInChanScale {
 	c = "uif?";
-	out "a" $c;
-    in "*a*:" $c "; ";
+	out "\$1" $c;
+    in "*\$1*:" $c "; ";
     in "INPUT FULLSCALE: %f ";
-	in $r;
+	in "!\$1" $r;
 }
 
 setInChanScale {
 	c = "uif";
-	out "a" $c " %f";
-    in "*a*:" $c ";%f";
-	in $r;
+	out "\$1" $c " %f";
+    in "*\$1*:" $c ";%f";
+	in "!\$1" $r;
 }
 
-getCurrentRead {
+getCurrRead {
 	c = "r";
-	out "a" $c;
-    in "*a*:" $c "  ; ";
+	out "\$1" $c;
+    in "*\$1*:" $c "  ; ";
     in "READ:%f\_;%*i";
-	in $r;
+	in "!\$1" $r;
 }
