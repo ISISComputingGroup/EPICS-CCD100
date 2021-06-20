@@ -29,4 +29,4 @@ iocBoot_DEPEND_DIRS += $(filter %App,$(DIRS))
 include $(TOP)/configure/RULES_TOP
 
 ioctests:
-	$(PYTHON3) $(SUPPORT)/IocTestFramework/master/run_tests.py --test_and_emulator ./system_tests
+	.\system_tests\run_tests.bat
