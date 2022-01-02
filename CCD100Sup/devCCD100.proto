@@ -1,6 +1,7 @@
 OutTerminator = "\r\n";
-InTerminator = "\r\r\n";
-ReplyTimeout = 2000;
+InTerminator = "\r\n";
+ReplyTimeout = 5000;
+LockTimeout = 15000;
 
 r = "!o!";
 
@@ -23,8 +24,10 @@ getSP {
 	c = "spv?";
 	out "\$1" $c;
     in "*\$1*:" $c "; ";
-    in "SP VALUE: %f ";
+    in "SP VALUE:%f\_";
 	in "!\$1" $r;
+	wait 100;
+	@mismatch { in "!\$1" $r; wait 100; }
 }
 
 setSP {
@@ -39,8 +42,10 @@ getUnits {
 	c = "uiu?";
 	out "\$1" $c;
     in "*\$1*:" $c "; ";
-    in "INPUT UNITS STR:%s";
+    in "INPUT UNITS STR: %s";
 	in "!\$1" $r;
+	wait 100;
+	@mismatch { in "!\$1" $r; wait 100; }
 }
 
 setUnits {
@@ -83,7 +88,9 @@ setInChanScale {
 getCurrRead {
 	c = "r";
 	out "\$1" $c;
-    in "*\$1*:" $c "  ; ";
+#    in "*\$1*:" $c "  ; ";
     in "READ:%f\_;%*i";
 	in "!\$1" $r;
+	wait 100;
+	@mismatch { in "!\$1" $r; wait 100; }
 }
