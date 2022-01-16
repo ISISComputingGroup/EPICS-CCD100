@@ -1,0 +1,100 @@
+OutTerminator = "\r\n";
+InTerminator = "\r\n";
+ReplyTimeout = 5000;
+LockTimeout = 15000;
+
+r = "!o!";
+
+## the @mismatch handlers are because we sometimes seem to get blank replies
+## from the ethernet device. We have only installed these on reads
+# as it will poll again and it avoids lots of reply mismatch errors in the log
+
+getInitSP {
+    c = "siv?";
+    out "\$1" $c;
+    in "*\$1*:" $c "; ";
+    in "SP INIT VAL: %f ";
+    in "!\$1" $r;
+}
+
+setInitSP {
+    c = "siv";
+    out "\$1" $c " %f";
+    in "*\$1*:" $c ";%f";
+    in "!\$1" $r;
+}
+
+getSP {
+    c = "spv?";
+    out "\$1" $c;
+    in "*\$1*:" $c "; ";
+    in "SP VALUE:%f\_";
+    in "!\$1" $r;
+    wait 100;
+    @mismatch { in "!\$1" $r; wait 100; }
+}
+
+setSP {
+    c = "spv";
+    out "\$1" $c " %f";
+    in "*\$1*:" $c ";%f";
+    in "!\$1" $r;
+}
+
+getUnits {
+    ExtraInput = ignore;
+    c = "uiu?";
+    out "\$1" $c;
+    in "*\$1*:" $c "; ";
+    in "INPUT UNITS STR: %s";
+    in "!\$1" $r;
+    wait 100;
+    @mismatch { in "!\$1" $r; wait 100; }
+}
+
+setUnits {
+    c = "uiu";
+    out "\$1" $c " %s";
+    in "*\$1*:" $c ";%s";
+    in "!\$1" $r;
+}
+
+getInChanRange {
+    c = "uir?";
+    out "\$1" $c;
+    in "*\$1*:" $c "; ";
+    in "INPUT RANGE: %f ";
+    in "!\$1" $r;
+}
+
+setInChanRange {
+    c = "uir";
+    out "\$1" $c " %f";
+    in "*\$1*:" $c ";%f";
+    in "!\$1" $r;
+}
+
+getInChanScale {
+    c = "uif?";
+    out "\$1" $c;
+    in "*\$1*:" $c "; ";
+    in "INPUT FULLSCALE: %f ";
+    in "!\$1" $r;
+}
+
+setInChanScale {
+    c = "uif";
+    out "\$1" $c " %f";
+    in "*\$1*:" $c ";%f";
+    in "!\$1" $r;
+}
+
+getCurrRead {
+    c = "r";
+    out "\$1" $c;
+#    in "*\$1*:" $c "  ; ";
+    in "READ:%f\_;%*i";
+    in "!\$1" $r;
+    wait 100;
+    @mismatch { in "!\$1" $r; wait 100; }
+}
