@@ -57,8 +57,11 @@ class CCD100Tests(unittest.TestCase):
 
     @skip_if_recsim("Can not test disconnection in rec sim")
     def test_GIVEN_device_not_connected_WHEN_get_status_THEN_alarm(self):
-        self._lewis.backdoor_set_on_device('connected', False)
-        self.ca.assert_that_pv_alarm_is('READING', ChannelAccess.Alarms.INVALID)
+        self.ca.assert_that_pv_alarm_is('READING', ChannelAccess.Alarms.NONE)
+        with self._lewis.backdoor_simulate_disconnected_device():
+            self.ca.assert_that_pv_alarm_is('READING', ChannelAccess.Alarms.INVALID)
+        # Assert alarms clear on reconnection
+        self.ca.assert_that_pv_alarm_is('READING', ChannelAccess.Alarms.NONE)
 
 
 class CCD100SecondDeviceTests(CCD100Tests):
