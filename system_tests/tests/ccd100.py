@@ -59,6 +59,8 @@ class CCD100Tests(unittest.TestCase):
     def test_GIVEN_device_not_connected_WHEN_get_status_THEN_alarm(self):
         self.ca.assert_that_pv_alarm_is('READING', ChannelAccess.Alarms.NONE)
         with self._lewis.backdoor_simulate_disconnected_device():
+            # Read timeout is 5s
+            sleep(6)
             self.ca.assert_that_pv_alarm_is('READING', ChannelAccess.Alarms.INVALID)
         # Assert alarms clear on reconnection
         self.ca.assert_that_pv_alarm_is('READING', ChannelAccess.Alarms.NONE)
