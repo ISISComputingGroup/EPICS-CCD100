@@ -1,7 +1,9 @@
-from lewis.devices import StateMachineDevice
-from lewis.core import approaches
-from .states import DefaultState
 from collections import OrderedDict
+
+from lewis.core import approaches
+from lewis.devices import StateMachineDevice
+
+from .states import DefaultState
 
 
 class SimulatedCCD100(StateMachineDevice):
