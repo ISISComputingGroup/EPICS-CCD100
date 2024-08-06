@@ -7,7 +7,6 @@ from .states import DefaultState
 
 
 class SimulatedCCD100(StateMachineDevice):
-
     def _initialize_data(self):
         self.connected = True
         self.address = "a"
@@ -23,15 +22,17 @@ class SimulatedCCD100(StateMachineDevice):
         self.out_terminator_in_error = ""
 
     def simulate(self, dt):
-        self.current_reading = approaches.linear(self.current_reading, self.setpoint, self.speed, dt)
+        self.current_reading = approaches.linear(
+            self.current_reading, self.setpoint, self.speed, dt
+        )
 
     def _get_state_handlers(self):
         return {
-            'default': DefaultState(),
+            "default": DefaultState(),
         }
 
     def _get_initial_state(self):
-        return 'default'
+        return "default"
 
     def _get_transition_handlers(self):
         return OrderedDict([])
